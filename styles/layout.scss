@@ -1,6 +1,34 @@
 // See: https://sass-lang.com/
+body {
+  background-color: white;
+  width: 100%;
 
-body,
-html {
-  margin: 0;
+
+  h1 {
+    color: #244751;
+  }
+}
+
+#nav-bar {
+  display: flex;
+  flex-direction: row;
+  
+  color: #FFFFFF;
+  background-color: #fa9770;
+  font-family: 'Source Sans Pro', sans-serif;
+  height: 120px;
+  padding: 1.5em;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 500;
+}
+
+#logo {
+  padding-right: 25px;
+}
+
+#search-form {
+  padding-right: 350px;
 }
