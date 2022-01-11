@@ -37,6 +37,7 @@ app.use(express.static("public"));
 // Note: Feel free to replace the example routes below with your own
 const usersRoutes = require("./routes/users");
 const listingRoutes = require("./routes/listing");
+const { getAllListings } = require("./server/database/getListings");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -57,7 +58,9 @@ app.get("/new-listing", (req, res) => {
 });
 
 app.get("/my-listings", (req, res) => {
-  res.render("my-listings");
+  getAllListings(db, { user_id: '1', show_sold: true }).then(result => {
+    res.render("my-listings", { listings: result });
+  })
 });
 
 app.listen(PORT, () => {

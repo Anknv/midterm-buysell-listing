@@ -18,18 +18,20 @@ const getAllListings = function(db, options, limit = 100) {
   const queryParams = [];
   // 2
   let queryString = `
-  SELECT listings.*, count(listings_likes.id) as trending_rating
+  SELECT listings.*, count(listing_likes.id) as trending_rating
   FROM listings
-  JOIN listings_likes ON listings.id = listing_id
+  LEFT JOIN listing_likes ON listings.id = listing_id
   `;
 
   // 3
   const whereConditions = [];
-  whereConditions.push(`is_sold = false`);
+  if (!options.show_sold) {
+    whereConditions.push(`is_sold = false`);
+  }
 
   if (options.user_id) {
     queryParams.push(options.user_id);
-    whereConditions.push(`user_id = $${queryParams.length}`);
+    whereConditions.push(`listings.user_id = $${queryParams.length}`);
   }
 
   if (options.word) {
