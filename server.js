@@ -60,6 +60,12 @@ app.get("/my-listings", (req, res) => {
   res.render("my-listings");
 });
 
+
+app.get("/search", (req, res) => {
+  res.render("search-form");
+});
+
+
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });
