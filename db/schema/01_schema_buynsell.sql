@@ -12,7 +12,6 @@ CREATE TABLE users (
   password VARCHAR(255) NOT NULL
 );
 
-
 -- listings table
 CREATE TABLE listings (
   id SERIAL PRIMARY KEY NOT NULL,
