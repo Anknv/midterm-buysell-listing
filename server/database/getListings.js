@@ -1,8 +1,5 @@
-
-/// LISTINGS
-
 /**
- * GET ALL LISTINGS.
+ * Get all listings.
  * @param {*} db Database pool connection.
  * @param {Object} options An object containing query options.
  * @param {string} options.user_id Only show listings for this user id.
@@ -13,7 +10,7 @@
  * @param {number} options.maximum_price Only show listings <= max price.
  * @param {string} options.order_by Either 'most_liked' or defaults to most recent listings
  * @param {number} limit The number of listings to return.
- * @return {Promise<[{}]>}  A promise to the listings.
+ * @return {Promise<[{}]>}  A promise to the listing.
  */
 
 const getAllListings = function(db, options, limit = 100) {
