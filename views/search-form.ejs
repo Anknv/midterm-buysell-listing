@@ -31,6 +31,16 @@
     </div>
 
     <div class="search-listing-form__field-wrapper">
+      <label for="search-listing-form__condition">Condition</label>
+      <input type="text" name="Condition" placeholder="Condition" id="search-listing-form__condition">
+      <select id = "conditions-dropdown" placeholder="conditions" name="conditions">
+        <option value="" disabled selected>Condition</option>
+        <option value = "1">New</option>
+        <option value = "2">Used</option>
+      </select>
+    </div>
+
+    <div class="search-listing-form__field-wrapper">
       <label for="search-listing-form__minimum-price">Min Price</label>
       <input type="number" name="minimum_price" placeholder="Minimum Cost" id="search-listing-form__minimum-price">
       <label for="search-listing-form__maximum-price">Max Price</label>
