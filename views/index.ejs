@@ -23,5 +23,24 @@
                 <a href="#">My Listings</a>
             </div>
         </div>
+        <% for(let listing of listings) { %>
+        <article class="my-listing">
+          <section class="my-listing__image_url">
+            <img src="<%= listing.image_url %>" alt="image" width="300">
+          </section>
+          <section class="my-listing__details">
+            <h3 class="my-listing__price">$<%= listing.price/100.0 %></h3>
+            <h2 class="my-listing__title"><%= listing.title %></h2>
+            <ul class="my-listing__details">
+              <li>Description: <%= listing.description %></li>
+              <li>Condition: <%= listing.condition %></li>
+              <li>Category: <%= listing.category %></li>
+              <li>Sold: <%= listing.is_sold %></li>
+            </ul>
+            <footer class="my-listing__footer">
+            </footer>
+          </section>
+        </article>
+        <% } %>
     </body>
 </html>

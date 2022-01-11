@@ -50,20 +50,24 @@ app.use("/api/listings", listingRoutes(db));
 // Separate them into separate routes files (see above).
 
 app.get("/", (req, res) => {
-  res.render("index");
+  getAllListings(db, {}).then(result => {
+    res.render("index", { listings: result });
+  })
 });
 
+// Rendering the new-listing form
 app.get("/new-listing", (req, res) => {
   res.render("create-listing");
 });
 
+// Rendering the my listings
 app.get("/my-listings", (req, res) => {
   getAllListings(db, { user_id: '1', show_sold: true }).then(result => {
     res.render("my-listings", { listings: result });
   })
 });
 
-
+// Rendering the search form
 app.get("/search", (req, res) => {
   res.render("search-form");
 });
