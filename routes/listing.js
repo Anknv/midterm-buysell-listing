@@ -3,7 +3,8 @@ const { createNewListing } = require('../server/database/createNewListing');
 const router  = express.Router();
 
 module.exports = (db) => {
-  router.post("/create-listing", (req, res) => {
+
+  router.post('/create-listing', (req, res) => {
     const body = req.body;
 
     if (!body.title || !body.description || !body.image || !body.condition || !body.category) {

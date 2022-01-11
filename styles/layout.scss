@@ -1,34 +1,65 @@
-// See: https://sass-lang.com/
-body {
-  background-color: white;
-  width: 100%;
+// // See: https://sass-lang.com/
+// body {
+//   background-color: white;
+//   width: 100%;
 
 
-  h1 {
-    color: #244751;
-  }
-}
+//   h1 {
+//     color: #244751;
+//   }
+// }
 
-#nav-bar {
-  display: flex;
-  flex-direction: row;
+// #nav-bar {
+//   display: flex;
+//   flex-direction: row;
+//   color: #FFFFFF;
+//   background-color: #fa9770;
+//   font-family: 'Source Sans Pro', sans-serif;
+//   height: 120px;
+//   padding: 1.5em;
+//   position: fixed;
+//   top: 0;
+//   left: 0;
+//   right: 0;
+//   z-index: 500;
+// }
+
+// #my-messages {
+//   color: white;
+//   padding-right: 25px;
+//   padding-left: 25px;
+// }
+
+// #my-wishlist {
+//   color: white;
+//   width: 13%;
+//   padding-right: 25px;
+//   padding-left: 25px;
+// }
+
+// #logo {
+//   padding: 25px;
+// }
+
+// #search-form {
+//   display: flex;
+//   width: 100%;
+//   justify-content: end;
+// }
+
+// #create-listings-nav {
   
-  color: #FFFFFF;
-  background-color: #fa9770;
-  font-family: 'Source Sans Pro', sans-serif;
-  height: 120px;
-  padding: 1.5em;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 500;
-}
+// }
 
-#logo {
-  padding-right: 25px;
-}
+// .login-form__field-wrapper{
+//   display: none;
+// }
 
-#search-form {
-  padding-right: 350px;
-}
+// .login-form:hover .login-form__field-wrapper {
+//   display: inline-block;
+//   position: absolute;
+//   top: 50px;
+//   right: 50px;
+//   background-color: #FFFFFFD1;
+//   border-radius: 10px;
+// }
