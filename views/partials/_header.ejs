@@ -1,0 +1,28 @@
+<header>
+    <nav>
+    <container id=nav-bar>
+        <div>
+            <label>Home</label>
+        </div>
+      <div id = "logo">
+        <img src="">
+      </div>
+      <div id = "my-wishlist">
+        <label>My Wishlist</label>
+      </div>
+      <div id="search-form">
+      <form method="POST" action="/search">
+        <input type="text" name="item-name"></input>
+        <select id = "categories-dropdown" placeholder="categories" name="categories">
+          <option value="" disabled selected>Categories</option>
+          <option value = "1">Clothing</option>
+          <option value = "2">Jewellery</option>
+          <option value = "3">Shoes</option>
+          <option value = "4">Other</option>
+        </select>
+        <button type="search" value="Search" class="btn btn-outline-dark">Search</button>
+      </form>
+      </div>
+    </container>
+    </nav>
+</header>
