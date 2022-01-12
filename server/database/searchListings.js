@@ -48,6 +48,11 @@
     queryParams.push(`${listing.categories}`);
     queryString += `WHERE title LIKE $${queryParams.length - 1}
     AND category = $${queryParams.length}`;
+   }  else if (listing.conditions && listing.categories) {
+    queryParams.push(`${listing.conditions}`);
+    queryParams.push(`${listing.categories}`);
+    queryString += `WHERE condition = $${queryParams.length - 1}
+    AND category = $${queryParams.length}`;
    } else if (listing.minimum_price && listing.maximum_price) {
     queryParams.push(min_price);
     queryParams.push(max_price);
