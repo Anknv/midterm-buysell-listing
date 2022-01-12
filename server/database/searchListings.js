@@ -7,7 +7,7 @@
  */
 
  const searchListings = function(db, user_id, listing) {
-   const queryPramas = [];
+   const queryParams = [];
    let queryString =`SELECT * FROM listings`;
 
    if (listing.title && listing.category && listing.condition && listing.minimum_price && listing.maximum_price) {

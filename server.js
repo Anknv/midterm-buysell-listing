@@ -37,12 +37,14 @@ app.use(express.static("public"));
 // Note: Feel free to replace the example routes below with your own
 const usersRoutes = require("./routes/users");
 const listingRoutes = require("./routes/listing");
+const searchListings = require("./routes/search-listing")
 const { getAllListings } = require("./server/database/getListings");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 app.use("/api/users", usersRoutes(db));
 app.use("/api/listings", listingRoutes(db));
+app.use("/search-listings",searchListings(db));
 // Note: mount other resources here, using the same pattern above
 
 // Home page
