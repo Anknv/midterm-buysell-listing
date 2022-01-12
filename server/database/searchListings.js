@@ -8,7 +8,7 @@
 
  const searchListings = function(db, user_id, listing) {
    const queryParams = [];
-   let queryString =`SELECT * FROM listings`;
+   let queryString =`SELECT * FROM listings `;
 
    if (listing.title && listing.category && listing.condition && listing.minimum_price && listing.maximum_price) {
     queryParams.push(`%${listing.title}%`);
@@ -17,7 +17,7 @@
     queryParams.push(`${listing.minimum_price}`);
     queryParams.push(`${listing.maximum_price}`);
     queryString += `WHERE title LIKE $${queryParams.length - 4}
-    AND category ${queryParams.length - 3} AND condition ${queryParams.length - 2}
+    AND category = $${queryParams.length - 3} AND condition = $${queryParams.length - 2}
     AND price BETWEEN $${queryParams.length - 1} AND $${queryParams.length}`;
    } else if (listing.title && listing.category && listing.minimum_price && listing.maximum_price) {
     queryParams.push(`%${listing.title}%`);
@@ -25,42 +25,49 @@
     queryParams.push(`${listing.minimum_price}`);
     queryParams.push(`${listing.maximum_price}`);
     queryString += `WHERE title LIKE $${queryParams.length - 3}
-    AND category ${queryParams.length - 2}
+    AND category = $${queryParams.length - 2}
     AND price BETWEEN $${queryParams.length - 1} AND $${queryParams.length}`;
    } else if (listing.title && listing.category && listing.minimum_price) {
     queryParams.push(`%${listing.title}%`);
     queryParams.push(`${listing.category}`);
     queryParams.push(`${listing.minimum_price}`);
     queryString += `WHERE title LIKE $${queryParams.length - 2}
-    AND category ${queryParams.length - 1}
+    AND category = $${queryParams.length - 1}
     AND price >= $${queryParams.length}`;
    } else if (listing.title && listing.category && listing.maximum_price) {
     queryParams.push(`%${listing.title}%`);
     queryParams.push(`${listing.category}`);
     queryParams.push(`${listing.maximum_price}`);
     queryString += `WHERE title LIKE $${queryParams.length - 2}
-    AND category ${queryParams.length - 1}
+    AND category = $${queryParams.length - 1}
     AND price <= $${queryParams.length}`;
    } else if (listing.title && listing.category) {
     queryParams.push(`%${listing.title}%`);
     queryParams.push(`${listing.category}`);
     queryString += `WHERE title LIKE $${queryParams.length - 1}
-    AND category ${queryParams.length}`;
+    AND category = $${queryParams.length}`;
    } else if (listing.title) {
     queryParams.push(`%${listing.title}%`);
     queryString += `WHERE title LIKE $${queryParams.length}`;
    } else if (listing.category) {
     queryParams.push(`${listing.category}`);
-    queryString += `WHERE category ${queryParams.length}`;
-   }
-   else if (listing.condition) {
+    queryString += `WHERE category = $${queryParams.length}`;
+   } else if (listing.condition) {
     queryParams.push(`${listing.condition}`);
-    queryString += `WHERE condition ${queryParams.length}`;
+    queryString += `WHERE condition = $${queryParams.length}`;
+   } else if (listing.minimum_price) {
+     let min_price = Number(listing.minimum_price);
+     console.log(typeof min_price);
+    queryParams.push(min_price);
+    queryString += `WHERE price >= $${queryParams.length}`;
+   } else if (listing.maximum_price) {
+    queryParams.push(listing.maximum_price);
+    queryString += `WHERE price <= $${queryParams.length}`;
    }
    console.log(queryString,queryParams);
   return db
     .query(queryString,queryParams)
-    .then((result) => result.rows[0]);
+    .then((result) => result.rows);
 };
 
 exports.searchListings = searchListings;

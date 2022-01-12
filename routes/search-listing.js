@@ -9,7 +9,7 @@ module.exports = (db) => {
     //Search All Listings
     searchListings(db, '1', body).then(result => {
 
-      res.render("search-listings")
+      res.render("search-listings",{listings:result});
     })
     .catch(e => {
       console.log(e);
