@@ -39,6 +39,7 @@ const usersRoutes = require("./routes/users");
 const listingRoutes = require("./routes/listing");
 const searchListings = require("./routes/search-listing")
 const { getAllListings } = require("./server/database/getListings");
+const { getWishListings } = require("./server/database/getWishListings");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -80,6 +81,12 @@ app.get("/search", (req, res) => {
   res.render("search-form");
 });
 
+// Rendering WishList page
+app.get("/my-wishlist", (req, res) => {
+  getWishListings(db,{user_id:'1'}).then(result => {
+    res.render("wish-listings",{listings: result,sold: false});
+  })
+});
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
