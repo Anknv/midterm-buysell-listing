@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Product</title>
+
+    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+    <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+
+    <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+    <script type="text/javascript" src="/scripts/app.js"></script>
+  </head>
+
+  <body>
+    <% include partials/_header %>
+
+    <div class="product-wrapper">
+
+      <div class="product-page-content">
+
+        <!-- IMAGE OF PRODUCT -->
+        <section class="product-img-container">
+          <img class="product-img" src="<%= listings.image_url %>" width= 600px height="700px" alt="listing-img">
+        </section>
+
+        <!-- PRODUCT DETAILS -->
+      <section class="product-info-container">
+
+        <div class="product-info">
+          <h1><%= listings.title%></h1>
+            <h2>$<%= listings.price / 100 %>.00</h2>
+
+            <% if (listings.quantity === 0) { %>
+              <p class="product_soldout">SOLD OUT</p>
+            <% } %>
+
+            <p><%= listings.description%></p>
+        </div>
+
+        <!-- BUTTONS -->
+      <div class="button-container">
+        <form action="/messages/1/1" method="GET"><button class="purchase-btn">
+          CONTACT SELLER
+        </button></form>
+      <form action="/my-wishlist/<%= listings.id %>" method="POST">
+        <button class="favourite-btn">
+          <i class="fas fa-heart"></i>
+        </button>
+      </form>
+    </div>
+
+  </section>
+
+  </div>
+
+  </body>
+</html>
