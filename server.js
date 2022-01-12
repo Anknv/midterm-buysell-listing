@@ -62,7 +62,7 @@ app.get("/new-listing", (req, res) => {
   res.render("create-listing");
 });
 
-// Rendering the my listings
+// Rendering my listings
 app.get("/my-listings", (req, res) => {
   getAllListings(db, { user_id: '1' }).then(result => {
     res.render("my-listings", { listings: result, sold: false });
@@ -70,7 +70,7 @@ app.get("/my-listings", (req, res) => {
 });
 
 app.get("/sold-listings", (req, res) => {
-  getAllListings(db, { user_id: '1', show_sold: true }).then(result => {
+  getAllListings(db, { user_id: '1', only_show_sold: true }).then(result => {
     res.render("my-listings", { listings: result, sold: true });
   })
 });

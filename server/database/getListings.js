@@ -25,7 +25,9 @@ const getAllListings = function(db, options, limit = 100) {
 
   // 3
   const whereConditions = [];
-  if (!options.show_sold) {
+  if (options.only_show_sold) {
+    whereConditions.push(`is_sold = true`);
+  } else {
     whereConditions.push(`is_sold = false`);
   }
 

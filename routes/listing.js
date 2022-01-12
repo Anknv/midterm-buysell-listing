@@ -1,5 +1,6 @@
 const express = require('express');
 const { createNewListing } = require('../server/database/createNewListing');
+const { deleteListing } = require('../server/database/deleteListing');
 const { markAsSoldListing } = require('../server/database/markAsSoldListing');
 const router  = express.Router();
 
@@ -30,8 +31,23 @@ module.exports = (db) => {
     const body = req.body;
     const listingId = body.listingId
 
-    markAsSoldListing(db, listingId).then(result => {
+    //Mark listing as sold
+    markAsSoldListing(db, '1', listingId).then(result => {
       res.redirect('/my-listings')
+    })
+    .catch(e => {
+      console.log(e);
+      res.status(400).send('Error!');
+    })
+  });
+
+  router.post('/delete-listing', (req, res) => {
+    const body = req.body;
+    const listingId = body.listingId;
+
+    //Delete listing
+    deleteListing(db, '1', listingId).then(result => {
+      res.redirect(result.is_sold ? '/sold-listings' : '/my-listings')
     })
     .catch(e => {
       console.log(e);
