@@ -1,10 +1,31 @@
-// body {
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   min-height: 100vh;
-//   background: white;
-// }
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: white;
+}
+
+#featured-items {
+  margin: 70px 0;
+}
+
+.col-3 {
+  flex-basis: 30%;
+  min-width: 250px;
+  margin-bottom: 30px;
+}
+
+.col-3 img {
+  width: 100%;
+}
+
+.small-container {
+  max-width: 1080px;
+  margin:auto;
+  padding-left: 25px;
+  padding-right: 25px;
+}
 
 * {
   box-sizing: border-box;
@@ -18,11 +39,18 @@ header {
   align-items: center;
   padding: 30px 10%;
   background-color: #93b1d8;
+  box-shadow: 3px 3px 7px 1px rgb(130, 133, 138);
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 500; 
 }
 
 .nav__links a,
 .cta,
-.overlay__content a {
+.overlay__content a{
   font-family: "Montserrat", sans-serif;
   font-weight: 500;
   color: #edf0f1;
@@ -58,6 +86,59 @@ header {
 .cta:hover {
   background-color: rgba(19, 118, 184, 0.8)
 }
+
+#product1 {
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+}
+
+#product1 h2 p {
+  
+  text-align: center;
+}
+
+#product1 .pro {
+  width: 23%;
+  min-width: 250px;
+  padding: 10px 12px;
+  border: 3px solid #9769b1;
+  border-radius: 25px;
+  cursor: pointer;
+  box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.02);
+  margin: 15px 0;
+  transition: 0.2 ease;
+}
+
+#product1 .pro:hover {
+  box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.06);
+}
+
+#product1 .pro img {
+  width: 100%;
+  border-radius: 20px;
+}
+
+#product1 .pro .title {
+  text-align: start;
+  padding: 10px 0;
+} 
+
+#product1 .pro .title span {
+  color: rgb(28, 104, 104);
+  font-size: 24px;
+}
+
+// .my-listing,
+// .my-features {
+//   max-width: 33.33%;
+// }
+
+// .listing-container,
+// .feature-container {
+//   display: flex;
+//   flex-wrap: wrap;
+// }
 
 /* Mobile Nav */
 
@@ -107,6 +188,13 @@ header {
   font-size: 60px;
   color: #edf0f1;
 }
+
+.my-listings {
+  display: flex;
+  flex-direction: column;
+}
+
+
 
 @media screen and (max-height: 450px) {
   .overlay a {
