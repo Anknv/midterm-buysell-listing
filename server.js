@@ -39,6 +39,7 @@ const usersRoutes = require("./routes/users");
 const listingRoutes = require("./routes/listing");
 const searchListings = require("./routes/search-listing")
 const { getAllListings } = require("./server/database/getListings");
+const getUserWithEmail = require("./server/database/loginFunctions");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -51,9 +52,19 @@ app.use("/api/search-listings",searchListings(db));
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 
+
+
 app.get("/", (req, res) => {
-  getAllListings(db, {}).then(result => {
-    res.render("index", { listings: result });
+  const data = {};
+  const promise1 =   getAllListings(db, {}, 3).then(result => {
+    data.featured = result;
+  })
+  const promise2 =   getAllListings(db, {}).then(result => {
+    data.listings = result;
+  })
+  Promise.all([promise1,promise2])
+  .then(() => {
+    res.render("index", data );
   })
 });
 
@@ -79,6 +90,14 @@ app.get("/sold-listings", (req, res) => {
 app.get("/search", (req, res) => {
   res.render("search-form");
 });
+
+// Login Form
+
+app.get('/login', (req, res) => {
+   res.render("login-form");
+});
+
+
 
 
 app.listen(PORT, () => {
