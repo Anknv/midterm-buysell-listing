@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>My Listings</title>
+  <title><%= sold ? 'My Sold Listings' : 'My Listings' %></title>
 
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
   <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
@@ -15,7 +15,10 @@
 
 <body>
   <%- include('partials/_header') %>
-  <h1>My Listings</h1>
+  <h1><%= sold ? 'My Sold Listings' : 'My Listings' %></h1>
+  <% if (!sold) { %>
+    <a href="/sold-listings">See sold listings</a>
+  <% } %>
   <% for(let listing of listings) { %>
   <article class="my-listing">
     <section class="my-listing__image_url">
@@ -28,13 +31,15 @@
         <li>Description: <%= listing.description %></li>
         <li>Condition: <%= listing.condition %></li>
         <li>Category: <%= listing.category %></li>
-        <li>Sold: <%= listing.is_sold %></li>
       </ul>
       <footer class="my-listing__footer">
-        <form method="post" action="/api/listings/sold-listing" id="sold-listing-form" class="sold-listing-form">
-          <button>Mark As Sold</button>
-          <button>Delete</button>
-        </form>
+        <% if (!sold) { %>
+          <form method="post" action="/api/listings/sold-listing" id="sold-listing-form" class="sold-listing-form">
+            <input type="hidden" name="listingId" value="<%= listing.id %>" />
+            <button>Mark As Sold</button>
+          </form>
+        <% } %>
+        <button>Delete</button>
       </footer>
     </section>
   </article>
