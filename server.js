@@ -44,7 +44,7 @@ const { getAllListings } = require("./server/database/getListings");
 // Note: Feel free to replace the example routes below with your own
 app.use("/api/users", usersRoutes(db));
 app.use("/api/listings", listingRoutes(db));
-app.use("/search-listings",searchListings(db));
+app.use("/api/search-listings",searchListings(db));
 // Note: mount other resources here, using the same pattern above
 
 // Home page
