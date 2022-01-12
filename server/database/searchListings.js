@@ -9,59 +9,64 @@
  const searchListings = function(db, user_id, listing) {
    const queryParams = [];
    let queryString =`SELECT * FROM listings `;
+   const min_price = Number(listing.minimum_price);
+   const max_price = Number(listing.maximum_price);
 
-   if (listing.title && listing.category && listing.condition && listing.minimum_price && listing.maximum_price) {
-    queryParams.push(`%${listing.title}%`);
-    queryParams.push(`${listing.category}`);
-    queryParams.push(`${listing.condition}`);
-    queryParams.push(`${listing.minimum_price}`);
-    queryParams.push(`${listing.maximum_price}`);
+   if (listing.Title && listing.categories && listing.conditions && listing.minimum_price && listing.maximum_price) {
+    queryParams.push(`%${listing.Title}%`);
+    queryParams.push(`${listing.categories}`);
+    queryParams.push(`${listing.conditions}`);
+    queryParams.push(min_price);
+    queryParams.push(max_price);
     queryString += `WHERE title LIKE $${queryParams.length - 4}
     AND category = $${queryParams.length - 3} AND condition = $${queryParams.length - 2}
     AND price BETWEEN $${queryParams.length - 1} AND $${queryParams.length}`;
-   } else if (listing.title && listing.category && listing.minimum_price && listing.maximum_price) {
-    queryParams.push(`%${listing.title}%`);
-    queryParams.push(`${listing.category}`);
-    queryParams.push(`${listing.minimum_price}`);
-    queryParams.push(`${listing.maximum_price}`);
+   } else if (listing.Title && listing.categories && listing.minimum_price && listing.maximum_price) {
+    queryParams.push(`%${listing.Title}%`);
+    queryParams.push(`${listing.categories}`);
+    queryParams.push(min_price);
+    queryParams.push(max_price);
     queryString += `WHERE title LIKE $${queryParams.length - 3}
     AND category = $${queryParams.length - 2}
     AND price BETWEEN $${queryParams.length - 1} AND $${queryParams.length}`;
-   } else if (listing.title && listing.category && listing.minimum_price) {
-    queryParams.push(`%${listing.title}%`);
-    queryParams.push(`${listing.category}`);
-    queryParams.push(`${listing.minimum_price}`);
+   } else if (listing.Title && listing.categories && listing.minimum_price) {
+    queryParams.push(`%${listing.Title}%`);
+    queryParams.push(`${listing.categories}`);
+    queryParams.push(min_price);
     queryString += `WHERE title LIKE $${queryParams.length - 2}
     AND category = $${queryParams.length - 1}
     AND price >= $${queryParams.length}`;
-   } else if (listing.title && listing.category && listing.maximum_price) {
-    queryParams.push(`%${listing.title}%`);
-    queryParams.push(`${listing.category}`);
-    queryParams.push(`${listing.maximum_price}`);
+   } else if (listing.Title && listing.categories && listing.maximum_price) {
+    queryParams.push(`%${listing.Title}%`);
+    queryParams.push(`${listing.categories}`);
+    queryParams.push(max_price);
     queryString += `WHERE title LIKE $${queryParams.length - 2}
     AND category = $${queryParams.length - 1}
     AND price <= $${queryParams.length}`;
-   } else if (listing.title && listing.category) {
-    queryParams.push(`%${listing.title}%`);
-    queryParams.push(`${listing.category}`);
+   } else if (listing.Title && listing.categories) {
+    queryParams.push(`%${listing.Title}%`);
+    queryParams.push(`${listing.categories}`);
     queryString += `WHERE title LIKE $${queryParams.length - 1}
     AND category = $${queryParams.length}`;
-   } else if (listing.title) {
-    queryParams.push(`%${listing.title}%`);
+   } else if (listing.minimum_price && listing.maximum_price) {
+    queryParams.push(min_price);
+    queryParams.push(max_price);
+    queryString += `WHERE
+    price BETWEEN $${queryParams.length - 1} AND $${queryParams.length}`;
+   }else if (listing.Title) {
+    queryParams.push(`%${listing.Title}%`);
     queryString += `WHERE title LIKE $${queryParams.length}`;
-   } else if (listing.category) {
-    queryParams.push(`${listing.category}`);
+   } else if (listing.categories) {
+    queryParams.push(`${listing.categories}`);
     queryString += `WHERE category = $${queryParams.length}`;
-   } else if (listing.condition) {
-    queryParams.push(`${listing.condition}`);
+   } else if (listing.conditions) {
+    queryParams.push(`${listing.conditions}`);
     queryString += `WHERE condition = $${queryParams.length}`;
    } else if (listing.minimum_price) {
-     let min_price = Number(listing.minimum_price);
-     console.log(typeof min_price);
     queryParams.push(min_price);
     queryString += `WHERE price >= $${queryParams.length}`;
    } else if (listing.maximum_price) {
-    queryParams.push(listing.maximum_price);
+    queryParams.push(max_price);
     queryString += `WHERE price <= $${queryParams.length}`;
    }
    console.log(queryString,queryParams);
