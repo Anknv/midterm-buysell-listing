@@ -1,5 +1,6 @@
 const express = require('express');
 const { createNewListing } = require('../server/database/createNewListing');
+const { markAsSoldListing } = require('../server/database/markAsSoldListing');
 const router  = express.Router();
 
 module.exports = (db) => {
@@ -22,6 +23,19 @@ module.exports = (db) => {
     .catch(e => {
       console.log(e);
       res.status(400).send('Error - listing is not created.');
+    })
+  });
+
+  router.post('/sold-listing', (req, res) => {
+    const body = req.body;
+    const listingId = body.listingId
+
+    markAsSoldListing(db, listingId).then(result => {
+      res.redirect('/my-listings')
+    })
+    .catch(e => {
+      console.log(e);
+      res.status(400).send('Error!');
     })
   });
 

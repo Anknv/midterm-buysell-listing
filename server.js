@@ -64,8 +64,14 @@ app.get("/new-listing", (req, res) => {
 
 // Rendering the my listings
 app.get("/my-listings", (req, res) => {
+  getAllListings(db, { user_id: '1' }).then(result => {
+    res.render("my-listings", { listings: result, sold: false });
+  })
+});
+
+app.get("/sold-listings", (req, res) => {
   getAllListings(db, { user_id: '1', show_sold: true }).then(result => {
-    res.render("my-listings", { listings: result });
+    res.render("my-listings", { listings: result, sold: true });
   })
 });
 
