@@ -1,5 +1,5 @@
-INSERT INTO listing_likes (user_id,listing_id) VALUES (1,1);
-INSERT INTO listing_likes (user_id,listing_id) VALUES (1,2);
+INSERT INTO listing_likes (user_id,listing_id) VALUES (1,8);
+INSERT INTO listing_likes (user_id,listing_id) VALUES (1,9);
 INSERT INTO listing_likes (user_id,listing_id) VALUES (1,3);
 INSERT INTO listing_likes (user_id,listing_id) VALUES (2,2);
 INSERT INTO listing_likes (user_id,listing_id) VALUES (2,3);

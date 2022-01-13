@@ -18,9 +18,10 @@ const getAllListings = function(db, options, limit = 100) {
   const queryParams = [];
   // 2
   let queryString = `
-  SELECT listings.*, count(listing_likes.id) as trending_rating
+  SELECT listings.*, count(listing_likes.id) as trending_rating, email
   FROM listings
   LEFT JOIN listing_likes ON listings.id = listing_id
+  JOIN users ON users.id = listings.user_id
   `;
 
   // 3
@@ -79,7 +80,7 @@ const getAllListings = function(db, options, limit = 100) {
   // 4
   queryParams.push(limit);
   queryString += `
-  GROUP BY listings.id
+  GROUP BY listings.id, email
   ORDER BY ${orderBy}
   LIMIT $${queryParams.length};
   `;

@@ -12,7 +12,7 @@ module.exports = (db) => {
         let email = req.body.email;
         let password = req.body.password;
         return db.query(`
-      SELECT id, email, password
+      SELECT id, name, email, password
       FROM users
       WHERE email = $1
     `, [email])
@@ -24,8 +24,10 @@ module.exports = (db) => {
                         console.log("def");
                         let userName = response.rows[0].name;
                         let userID = response.rows[0].id;
+                        let userEmail = response.rows[0].email;
                         req.session["userName"] = userName;
                         req.session["userID"] = userID;
+                        req.session["userEmail"] = userEmail;
                         return res.redirect("/");
                     } else {
                       return res.redirect("/login");
