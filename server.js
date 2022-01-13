@@ -47,6 +47,8 @@ const { getAllListings } = require("./server/database/getListings");
 const getUserWithEmail = require("./server/database/loginFunctions");
 const { getWishListings } = require("./server/database/getWishListings");
 const loginRoute = require("./routes/login");
+const { user } = require("pg/lib/defaults");
+const req = require("express/lib/request");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -61,7 +63,8 @@ app.use("/api/login", loginRoute(db));
 // Separate them into separate routes files (see above).
 
 app.get("/", (req, res) => {
-  const data = {};
+  const data = { user : getUSerFromSession(req.session) };
+  console.log(data);
   const promise1 =   getAllListings(db, {}, 3).then(result => {
     data.featured = result;
   })
@@ -84,7 +87,7 @@ app.get("/new-listing", (req, res) => {
 
 // Rendering my listings
 app.get("/my-listings", (req, res) => {
-  getAllListings(db, { user_id: '1' }).then(result => {
+  getAllListings(db, { }).then(result => {
     res.render("my-listings", { listings: result, sold: false });
   })
 });
@@ -100,10 +103,25 @@ app.get("/search", (req, res) => {
   res.render("search-form");
 });
 
+const getUSerFromSession = (session) => {
+  if(session["user_id"]) {
+    return { 
+      user_id : session["user_id"],
+      user_email : session["user_email"],
+      user_name : session["user_name"]
+   }
+  }
+};
 
 // Login Form
 app.get('/login', (req, res) => {
-   res.render("login-form");
+   res.render("login-form", { user : getUSerFromSession(req.session)});
+});
+
+
+app.post('/logout', (req, res) => {
+  req.session = null;
+  res.redirect('/');
 });
 
 
