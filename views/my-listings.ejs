@@ -39,12 +39,13 @@
             <button>Mark As Sold</button>
           </form>
         <% } %>
-        <button>Delete</button>
+        <form method="post" action="/api/listings/delete-listing" id="delete-listing-form" class="delete-listing-form">
+          <input type="hidden" name="listingId" value="<%= listing.id %>" />
+          <button>Delete</button>
+        </form>
       </footer>
     </section>
   </article>
   <% } %>
-
 </body>
-
 </html>

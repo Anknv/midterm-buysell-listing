@@ -22,6 +22,7 @@ CREATE TABLE listings (
   condition VARCHAR(255),
   description TEXT,
   image_url VARCHAR(255) NOT NULL,
+  featured BOOLEAN NOT NULL DEFAULT FALSE,
   is_sold BOOLEAN NOT NULL DEFAULT FALSE,
   created_on TIMESTAMP
 );

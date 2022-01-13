@@ -24,7 +24,7 @@
     <div class="search-listing-form__field-wrapper">
       <label for="search-listing-form__category">Category</label>
       <select id = "categories-dropdown" placeholder="categories" name="categories">
-        <option value="" disabled selected>Categories</option>
+        <option value="" disabled selected>Category</option>
         <option value = "Clothing">Clothing</option>
         <option value = "Accessories">Accessories</option>
         <option value = "Shoes">Shoes</option>
@@ -46,6 +46,15 @@
       <input type="number" name="minimum_price" placeholder="Minimum Cost" id="search-listing-form__minimum-price">
       <label for="search-listing-form__maximum-price">Max Price</label>
       <input type="number" name="maximum_price" placeholder="Maximum Cost" id="search-listing-form__maximum-price">
+    </div>
+
+    <div class="search-listing-form__field-wrapper">
+      <label for="search-listing-form__condition">Sort By</label>
+      <select id = "conditions-dropdown" placeholder="sortby" name="sortby">
+        <option value="" disabled selected>Filter</option>
+        <option value = "OldToNew">Old to New</option>
+        <option value = "NewToOld">New to Old</option>
+      </select>
     </div>
 
     <div class="search-listing-form__field-wrapper">

@@ -13,14 +13,14 @@
  * @return {Promise<[{}]>}  A promise to the listing.
  */
 
-const getAllListings = function(db, options, limit = 100) {
+ const getWishListings = function(db, options, limit = 100) {
   // 1
   const queryParams = [];
   // 2
   let queryString = `
-  SELECT listings.*, count(listing_likes.id) as trending_rating
+  SELECT *
   FROM listings
-  LEFT JOIN listing_likes ON listings.id = listing_id
+  JOIN listing_likes ON listings.id = listing_id AND listings.user_id = listing_likes.user_id
   `;
 
   // 3
@@ -36,52 +36,16 @@ const getAllListings = function(db, options, limit = 100) {
     whereConditions.push(`listings.user_id = $${queryParams.length}`);
   }
 
-  if (options.word) {
-    queryParams.push(`%${options.word}%`);
-    whereConditions.push(`(title LIKE $${queryParams.length} OR description LIKE $${queryParams.length})`);
-  }
-
-  if (options.condition) {
-    queryParams.push(options.condition);
-    whereConditions.push(`condition = $${queryParams.length}`);
-  }
-
-  if (options.category) {
-    queryParams.push(options.category);
-    whereConditions.push(`category = $${queryParams.length}`);
-  }
-
-  if (options.minimum_price) {
-    queryParams.push(options.minimum_price * 100);
-    whereConditions.push(`price >= $${queryParams.length}`);
-  }
-
-  if (options.maximum_price) {
-    queryParams.push(options.maximum_price * 100);
-    whereConditions.push(`price <= $${queryParams.length}`);
-  }
-
-  if (options.featured) {
-    whereConditions.push(`featured = True`);
-  }
-
   let orderBy = 'created_on DESC';
-  if (options.order_by) {
-    if (options.order_by === 'most_liked') {
-      orderBy = 'trending_rating DESC';
-    }
-  }
+
 
   const whereString = whereConditions.length ? `WHERE ${whereConditions.join(' AND ')}` : '';
 
   queryString += whereString;
 
   // 4
-  queryParams.push(limit);
   queryString += `
-  GROUP BY listings.id
   ORDER BY ${orderBy}
-  LIMIT $${queryParams.length};
   `;
 
   // 5
@@ -99,4 +63,4 @@ const getAllListings = function(db, options, limit = 100) {
 // getAllListings({}, { word: 'shoe', order_by: 'most_liked' }, 10)
 // getAllListings({}, { condition: 'used', category: 'shoes' })
 
-exports.getAllListings = getAllListings;
+exports.getWishListings = getWishListings;

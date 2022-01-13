@@ -40,6 +40,7 @@ const listingRoutes = require("./routes/listing");
 const searchListings = require("./routes/search-listing")
 const { getAllListings } = require("./server/database/getListings");
 const getUserWithEmail = require("./server/database/loginFunctions");
+const { getWishListings } = require("./server/database/getWishListings");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -73,7 +74,7 @@ app.get("/new-listing", (req, res) => {
   res.render("create-listing");
 });
 
-// Rendering the my listings
+// Rendering my listings
 app.get("/my-listings", (req, res) => {
   getAllListings(db, { user_id: '1' }).then(result => {
     res.render("my-listings", { listings: result, sold: false });
@@ -81,7 +82,7 @@ app.get("/my-listings", (req, res) => {
 });
 
 app.get("/sold-listings", (req, res) => {
-  getAllListings(db, { user_id: '1', show_sold: true }).then(result => {
+  getAllListings(db, { user_id: '1', only_show_sold: true }).then(result => {
     res.render("my-listings", { listings: result, sold: true });
   })
 });
@@ -99,6 +100,12 @@ app.get('/login', (req, res) => {
 
 
 
+// Rendering WishList page
+app.get("/my-wishlist", (req, res) => {
+  getWishListings(db,{user_id:'1'}).then(result => {
+    res.render("wish-listings",{listings: result,sold: false});
+  })
+});
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
