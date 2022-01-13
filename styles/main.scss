@@ -5,6 +5,8 @@ body {
   align-items: center;
   min-height: 100vh;
   background: white;
+  padding: 200px;
+  // padding-bottom: 20%;
 }
 
 body h1,
@@ -12,6 +14,7 @@ body p {
   font-family: Karla;
   font-style: italic;
   font-variant:normal;
+  // margin-top:100px;
 }
 
 h1 {
@@ -106,12 +109,19 @@ header {
 #product1 {
   display: flex;
   flex-direction: row;
-  // justify-content:space-between;
-  // text-align: center;
+  
 }
 
+#product2 {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-left: 100px;
+  padding-left: 80px;
+}
 
-#product1 .pro {
+#product1 .pro,
+#product2 .pro {
   width: 300px;
   padding: 10px 12px;
   border: 3px solid #8b6b9e;
@@ -122,23 +132,31 @@ header {
   transition: 0.2 ease;
 }
 
-#product1 .pro:hover {
+#product1 .pro:hover,
+#product2 .pro:hover {
   box-shadow: 20px 20px 30px rgba(124, 46, 143, 0.282);
 }
 
-#product1 .pro img {
+#product1 .pro img, 
+#product2 .pro img{
   width: 100%;
   border-radius: 20px;
 }
 
-#product1 .pro .title {
+#product1 .pro .title,
+#product2 .pro .title {
   text-align: start;
   padding: 10px 0;
 } 
 
-#product1 .pro .title span {
+#product1 .pro .title span,
+#product2 .pro .title span {
   color: rgb(112, 165, 245);
   font-size: 24px;
+}
+
+.fa, .fas {
+  color: black;
 }
 
 // .my-listing,

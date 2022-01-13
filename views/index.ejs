@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
   <link rel="stylesheet" href="/styles/main.css" type="text/css" />
   <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
     crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link href="https://fonts.googleapis.com/css2?family=Karla&family=Open+Sans&family=Oswald&display=swap" rel="stylesheet">    
@@ -41,52 +42,47 @@
           <div class="pro">
             <img src="<%= listing.image_url %>" alt="image">
             <div class="title">
-              <h5 class="des"><%= listing.description %></h5>
               <span class="section-p1_title"><%= listing.title %></span>
+              <h5 class="des"><%= listing.description %></h5>
               <div class="star">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
+                <i class="fas fa-envelope"></i>
+                <i class="fas fa-heart"></i>
               </div>
               <h4 class="section-p1_price">$<%= listing.price/100.0 %>
               </h4>
             </div>
-            <a href="/my-messages"><i class="far fa-envelope"></i></a>
           </div>
         </div>
         <% } %>
     </section>
 
-    <!-- <section class="feature-container">
-      <h2>Featured Products</h2>
-      <% for(let listing of featured) { %>
-        <article class="my-features" id="featured-items">
-          <section class="my-listing__image_url">
-            <img src="<%= listing.image_url %>" alt="image" width="100">
-          </section>
-          <section class="my-listing__details">
-            <h3 class="my-listing__price">$<%= listing.price/100.0 %>
-            </h3>
-            <h2 class="my-listing__title">
-              <%= listing.title %>
-            </h2>
-            <ul class="my-listing__details">
-              <li>Description: <%= listing.description %>
-              </li>
-              <li>Condition: <%= listing.condition %>
-              </li>
-              <li>Category: <%= listing.category %>
-              </li>
-              <li>Sold: <%= listing.is_sold %>
-              </li>
-            </ul>
-            <footer class="my-listing__footer">
-            </footer>
-          </section>
-        </article>
+    <!-- SEE ALL THE PRODUCTS SECTION -->
+    <section id="feature" class="section-p1">
+
+    </section>
+    <h1>See All Products</h1>
+    <section id="product2" class="section-p1">
+      <% for(let listing of listings) { %>
+        <div class="pro-container">
+          <div class="pro">
+            <img src="<%= listing.image_url %>" alt="image">
+            <div class="title">
+              <span class="section-p1_title"><%= listing.title %></span>
+              <h5 class="des"><%= listing.description %></h5>
+              <div class="my-listing__details">
+                <li>Condition: <%= listing.condition %></li>
+                <li>Category: <%= listing.category %></li>
+              </div>
+              <div class="icons">
+                <i class="fas fa-envelope"></i>
+                <i class="fas fa-heart"></i>
+              </div>
+              <h4 class="section-p1_price">$<%= listing.price/100.0 %></h4>
+            </div>
+          </div>
+        </div>
         <% } %>
-    </section> -->
+    </section>
 
     <!-- <section class="listing-container">
       <% for(let listing of listings) { %>
