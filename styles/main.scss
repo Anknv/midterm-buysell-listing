@@ -1,10 +1,24 @@
 body {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
   background: white;
 }
+
+body h1,
+body p {
+  font-family: Karla;
+  font-style: italic;
+  font-variant:normal;
+}
+
+h1 {
+  font-family: Karla;
+  color: #8b6b9e;
+}
+
 
 #featured-items {
   margin: 70px 0;
@@ -35,12 +49,11 @@ body {
 
 header {
   display: flex;
-  justify-content: space-between;
+  justify-content:flex-end;
   align-items: center;
   padding: 30px 10%;
   background-color: #93b1d8;
   box-shadow: 3px 3px 7px 1px rgb(130, 133, 138);
-
   position: fixed;
   top: 0;
   left: 0;
@@ -50,7 +63,8 @@ header {
 
 .nav__links a,
 .cta,
-.overlay__content a{
+.overlay__content a,
+#login-form_ {
   font-family: "Montserrat", sans-serif;
   font-weight: 500;
   color: #edf0f1;
@@ -60,6 +74,7 @@ header {
 .nav__links {
   list-style: none;
   display: flex;
+  padding-right: 350px;
 }
 
 .nav__links li {
@@ -74,7 +89,8 @@ header {
   color: rgb(71, 137, 199);
 }
 
-.cta {
+.cta,
+#login-form_ {
   padding: 9px 25px;
   background-color: rgb(71, 137, 199);
   border: none;
@@ -90,28 +106,24 @@ header {
 #product1 {
   display: flex;
   flex-direction: row;
-  text-align: center;
+  // justify-content:space-between;
+  // text-align: center;
 }
 
-#product1 h2 p {
-  
-  text-align: center;
-}
 
 #product1 .pro {
-  width: 23%;
-  min-width: 250px;
+  width: 300px;
   padding: 10px 12px;
-  border: 3px solid #9769b1;
+  border: 3px solid #8b6b9e;
   border-radius: 25px;
   cursor: pointer;
-  box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.02);
-  margin: 15px 0;
+  box-shadow: 20px 20px 30px rgba(124, 46, 143, 0.07);
+  margin: 50px 120px;
   transition: 0.2 ease;
 }
 
 #product1 .pro:hover {
-  box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.06);
+  box-shadow: 20px 20px 30px rgba(124, 46, 143, 0.282);
 }
 
 #product1 .pro img {
@@ -125,7 +137,7 @@ header {
 } 
 
 #product1 .pro .title span {
-  color: rgb(28, 104, 104);
+  color: rgb(112, 165, 245);
   font-size: 24px;
 }
 
