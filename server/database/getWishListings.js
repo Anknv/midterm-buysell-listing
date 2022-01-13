@@ -18,9 +18,9 @@
   const queryParams = [];
   // 2
   let queryString = `
-  SELECT *
-  FROM listings
-  JOIN listing_likes ON listings.id = listing_id AND listings.user_id = listing_likes.user_id
+  SELECT listing_likes.*, listings.*
+  FROM listing_likes
+  LEFT JOIN listings ON listing_id = listings.id
   `;
 
   // 3
@@ -33,7 +33,7 @@
 
   if (options.user_id) {
     queryParams.push(options.user_id);
-    whereConditions.push(`listings.user_id = $${queryParams.length}`);
+    whereConditions.push(`listing_likes.user_id = $${queryParams.length}`);
   }
 
   let orderBy = 'created_on DESC';

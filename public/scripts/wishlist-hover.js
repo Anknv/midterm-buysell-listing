@@ -8,7 +8,8 @@ $(".fa-heart").mouseover(function() {
 
 $(".fa-heart").mouseleave(function() {
   $(this).css({
-    color: "black"
+    color: "blue"
   })
 })
+
 })
