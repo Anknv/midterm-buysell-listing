@@ -9,12 +9,14 @@ module.exports = (db) => {
   router.post('/create-listing', (req, res) => {
     const body = req.body;
 
-    if (!body.title || !body.description || !body.image || !body.condition || !body.category) {
+    if (!body.title || !body.description || !body.image_url || !body.condition || !body.category) {
       res.status(400).send('Error. Listing is not created: missing field.');
+      return;
     }
 
     if (!(body.price > 0)) {
       res.status(400).send('Error - listing is not created: invalid price.');
+      return;
     }
 
     //Create new listing
