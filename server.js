@@ -49,6 +49,7 @@ const { getWishListings } = require("./server/database/getWishListings");
 const loginRoute = require("./routes/login");
 const { user } = require("pg/lib/defaults");
 const req = require("express/lib/request");
+const addLikes = require("./routes/likes");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -56,6 +57,7 @@ app.use("/api/users", usersRoutes(db));
 app.use("/api/listings", listingRoutes(db));
 app.use("/api/search-listings",searchListings(db));
 app.use("/api/login", loginRoute(db));
+app.use("/api/likes",addLikes(db));
 // Note: mount other resources here, using the same pattern above
 
 // Home page
@@ -105,7 +107,7 @@ app.get("/search", (req, res) => {
 
 const getUSerFromSession = (session) => {
   if(session["user_id"]) {
-    return { 
+    return {
       user_id : session["user_id"],
       user_email : session["user_email"],
       user_name : session["user_name"]
