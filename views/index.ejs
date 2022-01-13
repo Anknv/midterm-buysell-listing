@@ -14,7 +14,7 @@
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
     crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link href="https://fonts.googleapis.com/css2?family=Karla&family=Open+Sans&family=Oswald&display=swap" rel="stylesheet">    
+  <link href="https://fonts.googleapis.com/css2?family=Karla&family=Open+Sans&family=Oswald&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -43,10 +43,12 @@
             <div class="title">
               <span class="section-p1_title"><%= listing.title %></span>
               <h5 class="des"><%= listing.description %></h5>
-              <div class="star">
-                <i class="fas fa-envelope"></i>
-                <i class="fas fa-heart"></i>
-              </div>
+              <% if (userEmail) { %>
+                <div class="icons">
+                  <a target="_blank" href="mailto:<%= listing.email %>"><i class="fas fa-envelope"></i></a>
+                  <i class="fas fa-heart"></i>
+                </div>
+              <% } %>
               <h4 class="section-p1_price">$<%= listing.price/100.0 %>
               </h4>
             </div>
@@ -72,10 +74,12 @@
                 <li>Condition: <%= listing.condition %></li>
                 <li>Category: <%= listing.category %></li>
               </div>
-              <div class="icons">
-                <i class="fas fa-envelope"></i>
-                <i class="fas fa-heart"></i>
-              </div>
+              <% if (userEmail) { %>
+                <div class="icons">
+                  <a target="_blank" href="mailto:<%= listing.email %>"><i class="fas fa-envelope"></i></a>
+                  <i class="fas fa-heart"></i>
+                </div>
+              <% } %>
               <h4 class="section-p1_price">$<%= listing.price/100.0 %></h4>
             </div>
           </div>

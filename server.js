@@ -70,7 +70,10 @@ app.get("/", (req, res) => {
   })
   const promise2 =   getAllListings(db, {}).then(result => {
     data.listings = result;
-  })
+  });
+
+  data.userEmail = req.session.userEmail;
+
   Promise.all([promise1,promise2])
   .then(() => {
     res.render("index", data );
