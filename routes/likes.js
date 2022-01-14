@@ -23,7 +23,7 @@ module.exports = (db) => {
       const count = resultCheck.rowCount === undefined ? 0 : resultCheck.rowCount;
       console.log("Count",count);
       if (count > 0) {
-      res.status(400).send('Error - This item is already in your Wish List');
+      res.render("already-liked",{user: user});
     } else {
       addLikes(db, user.user_id, listing).then(result => {
         res.redirect("/my-wishlist");
