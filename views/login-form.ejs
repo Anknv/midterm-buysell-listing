@@ -9,30 +9,27 @@
 
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
   <script type="text/javascript" src="/scripts/app.js"></script>
+  
 </head>
-
   <body>
     <header>
         <%- include('partials/_header') %>
     </header>
-    <main style="margin: 1em;">
-      <h3 style="text-align: center">Login</h3>
-      <form class="form-inline justify-content-center" action="/api/login" method="POST">
-        <div class="form-group mb-2">
-          <label for="email">E-mail:</label>
-          <input class="form-control" 
-          type="email" 
-          name="email" 
-          placeholder="Please enter your e-mail." 
-          style="width: 300px; margin: 1em">
+    <div class="container">
+      <form action="/api/login" method="POST" class="login-email">
+        <p class="login-text" style="font-size: 2rem; font-weight: 800;">Login</p>
+        <div class="input-group">
+          <input type="email" placeholder="Email" name="email" required>
         </div>
-          <label for="password">Password:</label>
-          <input class="form-control" 
-          type="password" 
-          name="password" 
-          placeholder="Please enter your password." 
-          style="width: 300px; margin: 1em"><button type="submit" class="btn btn-warning">Login</button>
+        <div class="input-group">
+          <input type="password" placeholder="Password" name="password" required>
+        </div>
+        <div class="input-group">
+          <button name="submit" class="btn">Login</button>
+        </div>
+        <p class="login-register-text">Don't have an account? Register Here</p>
       </form>
-    </main>
+    </div>
   </body>
 </html>
+
