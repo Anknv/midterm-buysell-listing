@@ -8,7 +8,6 @@ body {
   min-height: 100vh;
   background: white;
   padding: 200px;
-  // padding-bottom: 20%;
 }
 
 body h1,
@@ -16,7 +15,6 @@ body p {
   font-family: "Montserrat", sans-serif;
   font-style: italic;
   font-variant:normal;
-  // margin-top:100px;
 }
 
 h1 {
@@ -63,7 +61,7 @@ header {
   top: 0;
   left: 0;
   right: 0;
-  z-index: 500; 
+  z-index: 500;
 }
 
 .nav__links a,
@@ -158,7 +156,7 @@ header {
 #product2 .pro-container .title {
   text-align: start;
   padding: 10px 0;
-} 
+}
 
 #product1 .pro-container .title span,
 #product2 .pro-container .title span {
@@ -169,59 +167,6 @@ header {
 .fa, .fas {
   color: black;
 }
-
-// .menu {
-//   display: none;
-// }
-
-// .overlay {
-//   height: 100%;
-//   width: 0;
-//   position: fixed;
-//   z-index: 1;
-//   left: 0;
-//   top: 0;
-//   background-color: #24252a;
-//   overflow-x: hidden;
-//   transition: width 0.5s ease 0s;
-// }
-
-// .overlay--active {
-//   width: 100%;
-// }
-
-// .overlay__content {
-//   display: flex;
-//   height: 100%;
-//   flex-direction: column;
-//   align-items: center;
-//   justify-content: center;
-// }
-
-// .overlay a {
-//   padding: 15px;
-//   font-size: 36px;
-//   display: block;
-//   transition: color 0.3s ease 0s;
-// }
-
-// .overlay a:hover,
-// .overlay a:focus {
-//   color: rgb(71, 137, 199);
-// }
-// .overlay .close {
-//   position: absolute;
-//   top: 20px;
-//   right: 45px;
-//   font-size: 60px;
-//   color: #edf0f1;
-// }
-
-// .my-listings {
-//   display: flex;
-//   flex-direction: column;
-// }
-
 
 
 // @media screen and (max-height: 450px) {
@@ -244,3 +189,22 @@ header {
 //     display: initial;
 //   }
 // }
+
+.like_button_form {
+  display: inline;
+}
+
+.like_button_form button {
+  border: 0;
+  background: transparent;
+}
+
+.like_button_form button:hover i,
+.like_button_form button:hover span {
+  color: red;
+  cursor: pointer;
+}
+
+.pro .icons .fas.fa-envelope:hover {
+  color: green;
+}

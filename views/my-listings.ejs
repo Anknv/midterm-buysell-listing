@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
   <link rel="stylesheet" href="/styles/main.css" type="text/css" />
   <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/listings.css" type="text/css" />
 
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
   <script type="text/javascript" src="/scripts/app.js"></script>
@@ -17,7 +18,7 @@
   <%- include('partials/_header') %>
   <h1><%= sold ? 'My Sold Listings' : 'My Listings' %></h1>
   <% if (!sold) { %>
-    <a href="/sold-listings">See sold listings</a>
+    <a id="sold-listings-link" href="/sold-listings">See sold listings</a>
   <% } %>
   <% for(let listing of listings) { %>
   <article class="my-listing">
@@ -28,20 +29,20 @@
       <h3 class="my-listing__price">$<%= listing.price/100.0 %></h3>
       <h2 class="my-listing__title"><%= listing.title %></h2>
       <ul class="my-listing__details">
-        <li>Description: <%= listing.description %></li>
-        <li>Condition: <%= listing.condition %></li>
-        <li>Category: <%= listing.category %></li>
+        <div>Description: <%= listing.description %></div>
+        <div>Condition: <%= listing.condition %></div>
+        <div>Category: <%= listing.category %></div>
       </ul>
       <footer class="my-listing__footer">
         <% if (!sold) { %>
           <form method="post" action="/api/listings/sold-listing" id="sold-listing-form" class="sold-listing-form">
             <input type="hidden" name="listingId" value="<%= listing.id %>" />
-            <button>Mark As Sold</button>
+            <button class="mark-sold-button">Mark As Sold</button>
           </form>
         <% } %>
         <form method="post" action="/api/listings/delete-listing" id="delete-listing-form" class="delete-listing-form">
           <input type="hidden" name="listingId" value="<%= listing.id %>" />
-          <button>Delete</button>
+          <button class="button-24">Delete</button>
         </form>
       </footer>
     </section>

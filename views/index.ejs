@@ -14,7 +14,8 @@
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
     crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link href="https://fonts.googleapis.com/css2?family=Karla&family=Open+Sans&family=Oswald&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Karla&family=Open+Sans&family=Oswald&display=swap"
+    rel="stylesheet">
 </head>
 
 <body>
@@ -22,28 +23,31 @@
 
     <!-- FEATURED ITEMS SECTION -->
 
-    <h1>Featured Products</h1>
-    <p>Check out our new featured products!</p>
+    <h1>Trending Products</h1>
+    <p>The Most Liked Products!</p>
     <section id="product1" class="section-p1">
       <div class="grid-container">
-      <% for(let listing of featured) { %>
+        <% for(let listing of trending) { %>
           <div class="pro-container">
             <img src="<%= listing.image_url %>" alt="image">
             <div class="title">
               <span class="section-p1_title"><%= listing.title %></span>
-              <h5 class="des"><%= listing.description %></h5>
-              <% if (user) { %>
-                <div class="icons">
-                  <a target="_blank" href="mailto:<%= listing.email %>"><i class="fas fa-envelope"></i></a>
-                  <i class="fas fa-heart"></i>
-                </div>
-              <% } %>
               <h4 class="section-p1_price">$<%= listing.price/100.0 %>
+                  <h5 class="des"><%= listing.description %></h5>
+                  <h5 class="des">Condition: <%= listing.condition %></h5>
+                  <h5 class="des">Category: <%= listing.category %></h5>
+                  <% if (user) { %>
+                    <div class="icons">
+                      <a target="_blank" href="mailto:<%= listing.email %>"><i class="fas fa-envelope"></i></a>
+                      <i class="fas fa-heart"></i>
+                      <span><%= listing.trending_rating %></span>
+                      </form>
+                    </div>
+                  <% } %>
               </h4>
             </div>
-        </div>
-        <% } %>
-      </div>
+          </div>
+            <% } %>
     </section>
 
     <!-- SEE ALL THE PRODUCTS SECTION -->
@@ -51,25 +55,32 @@
     <h1>See All Products</h1>
     <section id="product2" class="section-p1">
       <div class="grid-container">
-      <% for(let listing of listings) { %>
+        <% for(let listing of listings) { %>
           <div class="pro-container">
             <img src="<%= listing.image_url %>" alt="image">
             <div class="title">
-              <span class="section-p1_title"><%= listing.title %></span>
+              <span class="section-p1_title">
+                <%= listing.title %>
+              </span>
+              <h4 class="section-p1_price">$<%= listing.price/100.0 %></h4>
               <h5 class="des"><%= listing.description %></h5>
               <h5 class="des">Condition: <%= listing.condition %></h5>
               <h5 class="des">Category: <%= listing.category %></h5>
-
               <% if (user) { %>
                 <div class="icons">
                   <a target="_blank" href="mailto:<%= listing.email %>"><i class="fas fa-envelope"></i></a>
-                  <i class="fas fa-heart"></i>
+                  <form class="like_button_form" action="/api/likes" method="POST">
+                    <input name="listing_id" value="<%= listing.id%>" type="hidden">
+                    <button><i class="fas fa-heart"></i>
+                      <span>
+                        <%= listing.trending_rating %>
+                      </span></button>
+                  </form>
                 </div>
-              <% } %>
-              <h4 class="section-p1_price">$<%= listing.price/100.0 %></h4>
+                <% } %>
             </div>
           </div>
-        <% } %>
+          <% } %>
       </div>
     </section>
 </body>

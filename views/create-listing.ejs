@@ -4,18 +4,21 @@
 <head>
   <title>Create Listing</title>
 
+  <link href="https://fonts.googleapis.com/css2?family=Karla&family=Open+Sans&family=Oswald&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
   <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
   <link rel="stylesheet" href="/styles/main.css" type="text/css" />
   <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/listings.css" type="text/css" />
 
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
   <script type="text/javascript" src="/scripts/app.js"></script>
+
 </head>
 
 <body>
   <%- include('partials/_header') %>
-  <h1>Create Listing</h1>
+  <h1 id="new-listing-form-title">Create Listing</h1>
   <form method="post" action="/api/listings/create-listing" id="new-listing-form" class="new-listing-form">
 
     <div class="new-listing-form__field-wrapper">
@@ -56,9 +59,8 @@
       </select>
     </div>
 
-    <div class="new-listing-form__field-wrapper">
+    <div class="new-listing-form__field-wrapper buttons">
         <button>Create</button>
-        <a id="listing-form__cancel" href="#">Cancel</a>
     </div>
   </form>
 </body>

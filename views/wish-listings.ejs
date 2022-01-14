@@ -24,16 +24,6 @@
     <body>
         <% include partials/_header.ejs %>
         <h1>Wish List</h1>
-        <div class="overlay">
-            <a class="close">&times;</a>
-            <div class="overlay__content">
-                <a href="#">JIKIKI Market</a>
-                <a href="#">Wishlist</a>
-                <a href="#">Messages</a>
-                <a href="#">Create Listings</a>
-                <a href="#">My Listings</a>
-            </div>
-        </div>
         <% for(let listing of listings) { %>
         <article class="my-listing">
           <section class="my-listing__image_url">

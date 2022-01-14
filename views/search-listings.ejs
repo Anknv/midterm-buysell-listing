@@ -23,16 +23,6 @@
     </head>
     <body>
         <% include partials/_header.ejs %>
-        <div class="overlay">
-            <a class="close">&times;</a>
-            <div class="overlay__content">
-                <a href="#">JIKIKI Market</a>
-                <a href="#">Wishlist</a>
-                <a href="#">Messages</a>
-                <a href="#">Create Listings</a>
-                <a href="#">My Listings</a>
-            </div>
-        </div>
         <% for(let listing of listings) { %>
           <form action="/api/likes" method="POST">
         <article class="my-listing">
