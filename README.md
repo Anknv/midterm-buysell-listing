@@ -12,7 +12,25 @@ The following steps are only for _one_ of the group members to perform.
 5. Let your team members know the repo URL so that they use the same repo (they should _not_ create a copy/fork of this repo since that will add additional workflow complexity to the project)
 
 ## ERD
-![Entity Relations Diagram](https://github.com/abiramitoronto/midterm-buysell-listing/blob/master/db/ERD.png)
+![Entity Relations Diagram](./db/ERD.png)
+
+- / - home page - trending listings are shown at the top, which are the most liked listings. Below that the full list of listings is shown. Listings can be liked by users. The creator of the post can be contacted by clicking the mail icon
+- /new-listing - create a new listing and add it to my listings
+- /my-listings - shows listings you created with options to mark your listings as sold and/or delete them
+- /sold-listings - shows listings you created and are sold
+- /search - fill in the search form to filter listings
+- /api/search-listings - shows the filtered listings from your search 
+- /login - login to the app
+- /my-wishlist - the listings you have liked
+
+## Home page and Trending section
+![trending](./1.png)
+
+## My Listings
+![trending](./2.png)
+
+## Create Form
+![trending](./3.png)
 
 ## Getting Started
 
