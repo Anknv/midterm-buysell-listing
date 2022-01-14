@@ -23,6 +23,7 @@
     </head>
     <body>
         <% include partials/_header.ejs %>
+        <h1>Search list</h1>
         <% for(let listing of listings) { %>
           <form action="/api/likes" method="POST">
         <article class="my-listing">
