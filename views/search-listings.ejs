@@ -41,7 +41,7 @@
           </section>
           <section class="my-listing__details">
             <h3 class="my-listing__price">$<%= listing.price/100.0 %></h3>
-            <input name="listing_id" value="<%= listing.id%>" >
+            <input name="listing_id" value="<%= listing.id%>" type="hidden">
             <h2 class="my-listing__title"><%= listing.title %></h2>
             <ul class="my-listing__details">
               <li>Description: <%= listing.description %></li>
