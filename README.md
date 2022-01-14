@@ -1,6 +1,6 @@
 LHL Node Skeleton
 =========
-## KIJIJI Market 
+## JIKIKI Market 
 JIKIKI Market is a full stack web application built with Node and Express using EJS templates that allows users to post listings that other users can see, like and contact about (à la Kijiji and Marketplace).
 
 ## Project Setup
