@@ -35,6 +35,22 @@ The following steps are only for _one_ of the group members to perform.
 ## Create Form
 ![trending](./3.png)
 
+## Search Form
+![Search](./Searchform.png)
+
+## Search Listings
+![SearchListings](./Searchlisting.png)
+
+## Likes
+![Likes](./SearchLikes.png)
+
+## Wish List
+![WishList](./Wishlist.png)
+
+## Error Handling on Wish List
+![Error](./Errormessage.png)
+
+
 ## Getting Started
 
 1. Create the `.env` by using `.env.example` as a reference: `cp .env.example .env`
