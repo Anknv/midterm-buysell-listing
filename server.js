@@ -50,6 +50,7 @@ const loginRoute = require("./routes/login");
 const { user } = require("pg/lib/defaults");
 const req = require("express/lib/request");
 const addLikes = require("./routes/likes");
+const { getUserFromSession } = require("./server/getUserFromSession");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -65,7 +66,7 @@ app.use("/api/likes",addLikes(db));
 // Separate them into separate routes files (see above).
 
 app.get("/", (req, res) => {
-  const data = { user : getUSerFromSession(req.session) };
+  const data = { user : getUserFromSession(req.session) };
   console.log(data);
   const promise1 =   getAllListings(db, {}, 3).then(result => {
     data.featured = result;
@@ -73,8 +74,6 @@ app.get("/", (req, res) => {
   const promise2 =   getAllListings(db, {}).then(result => {
     data.listings = result;
   });
-
-  data.userEmail = req.session.userEmail;
 
   Promise.all([promise1,promise2])
   .then(() => {
@@ -84,40 +83,63 @@ app.get("/", (req, res) => {
 
 // Rendering the new-listing form
 app.get("/new-listing", (req, res) => {
-  res.render("create-listing");
+  const user = getUserFromSession(req.session);
+
+  if (!user) {
+    res.redirect('/login');
+    return;
+  }
+  res.render("create-listing", { user: user });
 });
 
 // Rendering my listings
 app.get("/my-listings", (req, res) => {
-  getAllListings(db, { }).then(result => {
-    res.render("my-listings", { listings: result, sold: false });
+  const user = getUserFromSession(req.session);
+
+  if (!user) {
+    res.redirect('/login');
+    return;
+  }
+
+  getAllListings(db, { user_id: user.user_id }).then(result => {
+    res.render("my-listings", { listings: result, sold: false, user: user });
   })
 });
 
 app.get("/sold-listings", (req, res) => {
-  getAllListings(db, { user_id: '1', only_show_sold: true }).then(result => {
-    res.render("my-listings", { listings: result, sold: true });
+
+  const user = getUserFromSession(req.session);
+
+  if (!user) {
+    res.redirect('/login');
+    return;
+  }
+
+  getAllListings(db, { user_id: user.user_id, only_show_sold: true }).then(result => {
+    res.render("my-listings", { listings: result, sold: true, user: user });
   })
 });
 
 // Rendering the search form
 app.get("/search", (req, res) => {
-  res.render("search-form");
-});
+  const user = getUserFromSession(req.session);
 
-const getUSerFromSession = (session) => {
-  if(session["user_id"]) {
-    return {
-      user_id : session["user_id"],
-      user_email : session["user_email"],
-      user_name : session["user_name"]
-   }
+  if (!user) {
+    res.redirect('/login');
+    return;
   }
-};
+  res.render("search-form", { user: user });
+});
 
 // Login Form
 app.get('/login', (req, res) => {
-   res.render("login-form", { user : getUSerFromSession(req.session)});
+  const user = getUserFromSession(req.session);
+
+  if (user) {
+    res.redirect('/');
+    return;
+  }
+   res.render("login-form", { user : {} });
 });
 
 
@@ -129,8 +151,15 @@ app.post('/logout', (req, res) => {
 
 // Rendering WishList page
 app.get("/my-wishlist", (req, res) => {
-  getWishListings(db,{user_id:'1'}).then(result => {
-    res.render("wish-listings",{listings: result,sold: false});
+  const user = getUserFromSession(req.session);
+
+  if (!user) {
+    res.redirect('/login');
+    return;
+  }
+
+  getWishListings(db,{user_id: user.user_id}).then(result => {
+    res.render("wish-listings",{ listings: result,sold: false, user: user });
   })
 });
 

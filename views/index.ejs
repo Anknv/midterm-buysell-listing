@@ -43,7 +43,7 @@
             <div class="title">
               <span class="section-p1_title"><%= listing.title %></span>
               <h5 class="des"><%= listing.description %></h5>
-              <% if (userEmail) { %>
+              <% if (user) { %>
                 <div class="icons">
                   <a target="_blank" href="mailto:<%= listing.email %>"><i class="fas fa-envelope"></i></a>
                   <i class="fas fa-heart"></i>
@@ -74,7 +74,7 @@
                 <li>Condition: <%= listing.condition %></li>
                 <li>Category: <%= listing.category %></li>
               </div>
-              <% if (userEmail) { %>
+              <% if (user) { %>
                 <div class="icons">
                   <a target="_blank" href="mailto:<%= listing.email %>"><i class="fas fa-envelope"></i></a>
                   <i class="fas fa-heart"></i>
