@@ -3,11 +3,12 @@
 
 <head>
   <title>Home Page</title>
-
+  <link href="https://fonts.googleapis.com/css2?family=Karla&family=Open+Sans&family=Oswald&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
   <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
   <link rel="stylesheet" href="/styles/main.css" type="text/css" />
   <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/search.css" type="text/css" />
 
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
   <script type="text/javascript" src="/scripts/app.js"></script>
@@ -43,9 +44,12 @@
 
     <div class="search-listing-form__field-wrapper">
       <label for="search-listing-form__minimum-price">Min Price</label>
-      <input type="number" name="minimum_price" placeholder="Minimum Cost" id="search-listing-form__minimum-price">
+      <input type="number" name="minimum_price" placeholder="Minimum Price" id="search-listing-form__minimum-price">
+    </div>
+
+    <div class="search-listing-form__field-wrapper">
       <label for="search-listing-form__maximum-price">Max Price</label>
-      <input type="number" name="maximum_price" placeholder="Maximum Cost" id="search-listing-form__maximum-price">
+      <input type="number" name="maximum_price" placeholder="Maximum Price" id="search-listing-form__maximum-price">
     </div>
 
     <div class="search-listing-form__field-wrapper">
@@ -57,7 +61,7 @@
       </select>
     </div>
 
-    <div class="search-listing-form__field-wrapper">
+    <div class="search-listing-form__field-wrapper buttons">
         <button>Search</button>
         <a id="search-listing-form__cancel" href="/">Cancel</a>
     </div>
