@@ -2,6 +2,7 @@ const express = require('express');
 const { createNewListing } = require('../server/database/createNewListing');
 const { deleteListing } = require('../server/database/deleteListing');
 const { markAsSoldListing } = require('../server/database/markAsSoldListing');
+const { getUserFromSession } = require('../server/getUserFromSession');
 const router  = express.Router();
 
 module.exports = (db) => {
@@ -19,8 +20,15 @@ module.exports = (db) => {
       return;
     }
 
+    const user = getUserFromSession(req.session);
+
+    if (!user) {
+      res.redirect('/login');
+      return;
+    }
+
     //Create new listing
-    createNewListing(db, '1', body).then(result => {
+    createNewListing(db, user.user_id, body).then(result => {
       res.redirect('/my-listings')
     })
     .catch(e => {
@@ -33,8 +41,15 @@ module.exports = (db) => {
     const body = req.body;
     const listingId = body.listingId
 
+    const user = getUserFromSession(req.session);
+
+    if (!user) {
+      res.redirect('/login');
+      return;
+    }
+
     //Mark listing as sold
-    markAsSoldListing(db, '1', listingId).then(result => {
+    markAsSoldListing(db, user.user_id, listingId).then(result => {
       res.redirect('/my-listings')
     })
     .catch(e => {
@@ -47,8 +62,15 @@ module.exports = (db) => {
     const body = req.body;
     const listingId = body.listingId;
 
+    const user = getUserFromSession(req.session);
+
+    if (!user) {
+      res.redirect('/login');
+      return;
+    }
+
     //Delete listing
-    deleteListing(db, '1', listingId).then(result => {
+    deleteListing(db, user_id.user_id, listingId).then(result => {
       res.redirect(result.is_sold ? '/sold-listings' : '/my-listings')
     })
     .catch(e => {
