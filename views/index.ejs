@@ -33,23 +33,29 @@
     <section id="feature" class="section-p1">
 
     </section>
-    <h1>Featured Products</h1>
-    <p>Check out our new featured products!</p>
+    <h1>Trending Products</h1>
+    <p>The Most Liked Products!</p>
     <section id="product1" class="section-p1">
-      <% for(let listing of featured) { %>
+      <% for(let listing of trending) { %>
         <div class="pro-container">
           <div class="pro">
             <img src="<%= listing.image_url %>" alt="image">
             <div class="title">
               <span class="section-p1_title"><%= listing.title %></span>
+              <h4 class="section-p1_price">$<%= listing.price/100.0 %>
               <h5 class="des"><%= listing.description %></h5>
+              <div class="my-listing__details">
+                <div>Condition: <%= listing.condition %></div>
+                <div>Category: <%= listing.category %></div>
+              </div>
               <% if (user) { %>
                 <div class="icons">
                   <a target="_blank" href="mailto:<%= listing.email %>"><i class="fas fa-envelope"></i></a>
                   <i class="fas fa-heart"></i>
+                  <span><%= listing.trending_rating %></span>
+                  </form>
                 </div>
               <% } %>
-              <h4 class="section-p1_price">$<%= listing.price/100.0 %>
               </h4>
             </div>
           </div>
@@ -69,18 +75,22 @@
             <img src="<%= listing.image_url %>" alt="image">
             <div class="title">
               <span class="section-p1_title"><%= listing.title %></span>
+              <h4 class="section-p1_price">$<%= listing.price/100.0 %></h4>
               <h5 class="des"><%= listing.description %></h5>
               <div class="my-listing__details">
-                <li>Condition: <%= listing.condition %></li>
-                <li>Category: <%= listing.category %></li>
+                <div>Condition: <%= listing.condition %></div>
+                <div>Category: <%= listing.category %></div>
               </div>
               <% if (user) { %>
                 <div class="icons">
                   <a target="_blank" href="mailto:<%= listing.email %>"><i class="fas fa-envelope"></i></a>
-                  <i class="fas fa-heart"></i>
+                  <form class="like_button_form" action="/api/likes" method="POST">
+                    <input name="listing_id" value="<%= listing.id%>" type="hidden">
+                    <button><i class="fas fa-heart"></i>
+                    <span><%= listing.trending_rating %></span></button>
+                  </form>
                 </div>
               <% } %>
-              <h4 class="section-p1_price">$<%= listing.price/100.0 %></h4>
             </div>
           </div>
         </div>

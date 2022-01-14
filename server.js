@@ -68,8 +68,8 @@ app.use("/api/likes",addLikes(db));
 app.get("/", (req, res) => {
   const data = { user : getUserFromSession(req.session) };
   console.log(data);
-  const promise1 =   getAllListings(db, {}, 3).then(result => {
-    data.featured = result;
+  const promise1 =   getAllListings(db, { order_by: 'most_liked' }, 3).then(result => {
+    data.trending = result;
   })
   const promise2 =   getAllListings(db, {}).then(result => {
     data.listings = result;

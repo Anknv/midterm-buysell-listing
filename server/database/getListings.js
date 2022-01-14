@@ -62,10 +62,6 @@ const getAllListings = function(db, options, limit = 100) {
     whereConditions.push(`price <= $${queryParams.length}`);
   }
 
-  if (options.featured) {
-    whereConditions.push(`featured = True`);
-  }
-
   let orderBy = 'created_on DESC';
   if (options.order_by) {
     if (options.order_by === 'most_liked') {
