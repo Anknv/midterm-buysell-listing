@@ -70,7 +70,7 @@ module.exports = (db) => {
     }
 
     //Delete listing
-    deleteListing(db, user_id.user_id, listingId).then(result => {
+    deleteListing(db, user.user_id, listingId).then(result => {
       res.redirect(result.is_sold ? '/sold-listings' : '/my-listings')
     })
     .catch(e => {
