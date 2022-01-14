@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather&family=Montserrat:wght@500&display=swap');
+
 body {
   display: flex;
   flex-direction: column;
@@ -11,14 +13,14 @@ body {
 
 body h1,
 body p {
-  font-family: Karla;
+  font-family: "Montserrat", sans-serif;
   font-style: italic;
   font-variant:normal;
   // margin-top:100px;
 }
 
 h1 {
-  font-family: Karla;
+  font-family: "Montserrat", sans-serif;
   color: #8b6b9e;
 }
 
@@ -108,51 +110,58 @@ header {
   background-color: rgba(19, 118, 184, 0.8)
 }
 
-#product1 {
-  display: flex;
-  flex-direction: row;
-  
-}
-
+#product1 ,
 #product2 {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  margin-left: 100px;
-  padding-left: 80px;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
 }
 
-#product1 .pro,
-#product2 .pro {
-  width: 300px;
+.grid-container {
+  grid-template-columns: 1fr;
+  @media only screen and (min-width: 768px) {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 50px;
+  }
+}
+
+.pro-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#product1 .pro-container,
+#product2 .pro-container {
+  // width: 300px;
   padding: 10px 12px;
   border: 3px solid #8b6b9e;
   border-radius: 25px;
   cursor: pointer;
   box-shadow: 20px 20px 30px rgba(124, 46, 143, 0.07);
-  margin: 50px 120px;
+  margin: 50px 0px;
   transition: 0.2 ease;
 }
 
-#product1 .pro:hover,
-#product2 .pro:hover {
+#product1 .pro-container:hover,
+#product2 .pro-container:hover {
   box-shadow: 20px 20px 30px rgba(124, 46, 143, 0.282);
 }
 
-#product1 .pro img, 
-#product2 .pro img{
+#product1 .pro-container img, 
+#product2 .pro-container img{
   width: 100%;
   border-radius: 20px;
 }
 
-#product1 .pro .title,
-#product2 .pro .title {
+#product1 .pro-container .title,
+#product2 .pro-container .title {
   text-align: start;
   padding: 10px 0;
 } 
 
-#product1 .pro .title span,
-#product2 .pro .title span {
+#product1 .pro-container .title span,
+#product2 .pro-container .title span {
   color: rgb(112, 165, 245);
   font-size: 24px;
 }
@@ -161,90 +170,77 @@ header {
   color: black;
 }
 
-// .my-listing,
-// .my-features {
-//   max-width: 33.33%;
+// .menu {
+//   display: none;
 // }
 
-// .listing-container,
-// .feature-container {
+// .overlay {
+//   height: 100%;
+//   width: 0;
+//   position: fixed;
+//   z-index: 1;
+//   left: 0;
+//   top: 0;
+//   background-color: #24252a;
+//   overflow-x: hidden;
+//   transition: width 0.5s ease 0s;
+// }
+
+// .overlay--active {
+//   width: 100%;
+// }
+
+// .overlay__content {
 //   display: flex;
-//   flex-wrap: wrap;
+//   height: 100%;
+//   flex-direction: column;
+//   align-items: center;
+//   justify-content: center;
 // }
 
-/* Mobile Nav */
+// .overlay a {
+//   padding: 15px;
+//   font-size: 36px;
+//   display: block;
+//   transition: color 0.3s ease 0s;
+// }
 
-.menu {
-  display: none;
-}
+// .overlay a:hover,
+// .overlay a:focus {
+//   color: rgb(71, 137, 199);
+// }
+// .overlay .close {
+//   position: absolute;
+//   top: 20px;
+//   right: 45px;
+//   font-size: 60px;
+//   color: #edf0f1;
+// }
 
-.overlay {
-  height: 100%;
-  width: 0;
-  position: fixed;
-  z-index: 1;
-  left: 0;
-  top: 0;
-  background-color: #24252a;
-  overflow-x: hidden;
-  transition: width 0.5s ease 0s;
-}
-
-.overlay--active {
-  width: 100%;
-}
-
-.overlay__content {
-  display: flex;
-  height: 100%;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.overlay a {
-  padding: 15px;
-  font-size: 36px;
-  display: block;
-  transition: color 0.3s ease 0s;
-}
-
-.overlay a:hover,
-.overlay a:focus {
-  color: rgb(71, 137, 199);
-}
-.overlay .close {
-  position: absolute;
-  top: 20px;
-  right: 45px;
-  font-size: 60px;
-  color: #edf0f1;
-}
-
-.my-listings {
-  display: flex;
-  flex-direction: column;
-}
+// .my-listings {
+//   display: flex;
+//   flex-direction: column;
+// }
 
 
 
-@media screen and (max-height: 450px) {
-  .overlay a {
-    font-size: 20px;
-  }
-  .overlay .close {
-    font-size: 40px;
-    top: 15px;
-    right: 35px;
-  }
-}
+// @media screen and (max-height: 450px) {
+//   .overlay a {
+//     font-size: 20px;
+//   }
+//   .overlay .close {
+//     font-size: 40px;
+//     top: 15px;
+//     right: 35px;
+//   }
+// }
 
-@media only screen and (max-width: 800px) {
-  .nav__links,
-  .cta {
-    display: none;
-  }
-  .menu {
-    display: initial;
-  }
-}
+// @media only screen and (max-width: 800px) {
+//   .nav__links,
+//   .cta {
+//     display: none;
+//   }
+//   .menu {
+//     display: initial;
+//   }
+// }

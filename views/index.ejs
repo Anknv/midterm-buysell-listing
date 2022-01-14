@@ -19,26 +19,15 @@
 
 <body>
   <% include partials/_header.ejs %>
-    <div class="overlay">
-      <a class="close">&times;</a>
-      <div class="overlay__content">
-        <a href="#">JIKIKI Market</a>
-        <a href="#">Wishlist</a>
-        <a href="#">Create Listings</a>
-        <a href="#">My Listings</a>
-      </div>
-    </div>
 
     <!-- FEATURED ITEMS SECTION -->
-    <section id="feature" class="section-p1">
 
-    </section>
     <h1>Featured Products</h1>
     <p>Check out our new featured products!</p>
     <section id="product1" class="section-p1">
+      <div class="grid-container">
       <% for(let listing of featured) { %>
-        <div class="pro-container">
-          <div class="pro">
+          <div class="pro-container">
             <img src="<%= listing.image_url %>" alt="image">
             <div class="title">
               <span class="section-p1_title"><%= listing.title %></span>
@@ -52,28 +41,25 @@
               <h4 class="section-p1_price">$<%= listing.price/100.0 %>
               </h4>
             </div>
-          </div>
         </div>
         <% } %>
+      </div>
     </section>
 
     <!-- SEE ALL THE PRODUCTS SECTION -->
-    <section id="feature" class="section-p1">
 
-    </section>
     <h1>See All Products</h1>
     <section id="product2" class="section-p1">
+      <div class="grid-container">
       <% for(let listing of listings) { %>
-        <div class="pro-container">
-          <div class="pro">
+          <div class="pro-container">
             <img src="<%= listing.image_url %>" alt="image">
             <div class="title">
               <span class="section-p1_title"><%= listing.title %></span>
               <h5 class="des"><%= listing.description %></h5>
-              <div class="my-listing__details">
-                <li>Condition: <%= listing.condition %></li>
-                <li>Category: <%= listing.category %></li>
-              </div>
+              <h5 class="des">Condition: <%= listing.condition %></h5>
+              <h5 class="des">Category: <%= listing.category %></h5>
+
               <% if (user) { %>
                 <div class="icons">
                   <a target="_blank" href="mailto:<%= listing.email %>"><i class="fas fa-envelope"></i></a>
@@ -83,37 +69,9 @@
               <h4 class="section-p1_price">$<%= listing.price/100.0 %></h4>
             </div>
           </div>
-        </div>
         <% } %>
+      </div>
     </section>
-
-    <!-- <section class="listing-container">
-      <% for(let listing of listings) { %>
-        <article class="my-listing" id="featured-items">
-          <section class="my-listing__image_url">
-            <img src="<%= listing.image_url %>" alt="image" width="100">
-          </section>
-          <section class="my-listing__details">
-            <h3 class="my-listing__price">$<%= listing.price/100.0 %>
-            </h3>
-            <h2 class="my-listing__title">
-              <%= listing.title %>
-            </h2>
-            <ul class="my-listing__details">
-              <li>Description: <%= listing.description %></li>
-              <li>Condition: <%= listing.condition %></li>
-              <li>Category: <%= listing.category %></li>
-            </ul>
-            <footer class="my-listing__footer">
-              <div class="icons">
-                <i class="fas fa-envelope"></i>
-                <i class="fas fa-heart"></i>
-              </div>
-            </footer>
-          </section>
-        </article>
-        <% } %>
-    </section> -->
 </body>
 
 </html>
